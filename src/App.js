@@ -25,6 +25,8 @@ function App(){
   // 제목에 맞는 모달창이 뜨게
   let [누른제목, 누른제목변경] = useState(0);
 
+  //인풋저장
+  let [입력값, 입력값변경] = useState(' '); 
   // 어레이의 모든 데이터에 2를 곱하고 싶은경우
   var 어레이 = [2,3,4];
   // map으로 하나씩 꺼내기
@@ -70,14 +72,20 @@ function App(){
         <hr/>
       </div>
 
+      {/* 인풋데이터를 state로 저장 */}
+      {/* 입력이 될때마다 함수 실행 */}
+      {/* 사용자가 입력한 값 e.target.value */}
+      <input onChange={(e)=>{입력값변경(e.target.value)}}/>
+
+
       <button onClick={() => {모달변경(!모달)}}>모달 열고 닫기</button>
 
       {/* 반복문을 for대신 map */}
       {
         글제목.map((a, i)=>{
-           return  (
-           <div className="list">
-            <h3 onClick = {()=>{누른제목변경(i), 모달변경(ture)}}>
+           return  (// key 반복문이 들어갈때마다 증가하는 숫자 
+           <div className="list" key={i}>
+            <h3 onClick = {()=>{누른제목변경(i)}}>
               {a}
               <span onClick={ ()=>{ 별변경(별 + 1)} }>⭐️</span> {별} 
             </h3>
