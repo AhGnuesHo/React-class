@@ -3,6 +3,7 @@
 import React, {useState} from 'react'; // 리액트의 내장 함수를 사용
 import logo from './logo.svg';
 import './App.css'; 
+import { render } from '@testing-library/react';
 //리액트는 데이터 바인딩 쉽게할 수 있다. 
 //데이터는 변수에 넣거나, state에 넣거나 한다.
 function App(){
@@ -71,12 +72,13 @@ function App(){
         <p>3월 3일 발행</p>
         <hr/>
       </div>
+      
+      {/* 컴포넌트 만들기 다른 버전 */}
+      <Profile/>
 
       {/* 인풋데이터를 state로 저장 */}
       {/* 입력이 될때마다 함수 실행 */}
       {/* 사용자가 입력한 값 e.target.value */}
-      <input onChange={(e)=>{입력값변경(e.target.value)}}/>
-
       <div className="publish">
         <input onChange={(e)=>{입력값변경(e.target.value)}}/>
         <button onClick={()=>{
@@ -137,6 +139,28 @@ function Modal(props){ // 태그이름짓기 대문자로 시작
       <p>상세내용</p>
     </div> // 원하는 html
   )
+}
+
+// 옛날 버전 컴포넌트 만들기
+class Profile extends React.Component {
+  constructor(){
+    super();
+    // state는 constructor 안에 작성
+    this.state = {name : 'kim', age : 20}
+  }
+
+  changeName = () =>{
+    this.setState({name : 'park'})
+  }
+
+  render(){
+    return(
+    <div>프로필컴포넌트만들기 (옛날버전)
+        <h3>저는 {this.state.name} 입니다. </h3>
+        <button onClick={this.changeName}>이름바꾸기</button>
+    </div>
+    )
+  }
 }
 
 export default App;
