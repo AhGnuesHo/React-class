@@ -21,12 +21,24 @@ function App(){
   
   let posts = '강남 고기 맛집';
   
+  function 제목바꾸기() {
+    // 글제목에 있던 0번째 데이터를 옛날 코트 추천으로 바꾸기
+    // 복사본생성 deep copy (등호는 값 공유하는 것임)
+    // 리액트의 대원칙 immutable data
+    // 값을 직접 수정하는 것이 아니라 복사본을 만들어서 수정하는 것
+    // ... es6 문법
+    var newArray = [...글제목]; 
+    newArray[0] = '옛날코트 추천';
+    글제목변경(newArray);
+  }
+
   return (
     <div className="App">
       <div className="black-nav">
         {/* 수시로 바뀌지 않는 데이터는 변수로 사용하는 것이 좋다 */}
         <div>개발 blog</div> 
       </div>
+      <button onClick={제목바꾸기}>버튼</button>
       <div className="list">
         <h3>{ 글제목[0]}
         {/* 클릭이벤트 */}
