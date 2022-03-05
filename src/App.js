@@ -56,8 +56,29 @@ function App(){
         <p>3월 3일 발행</p>
         <hr/>
       </div>
+      {/*  <div className='modal'>
+              <h2>제목</h2>
+              <p>날짜</p>
+              <p>상세내용</p>
+            </div> */}
+
+      <Modal/>
+
     </div>
   )
 }
+
+{/* html을 한 단어로 줄여서 쓸수 있는 방법 : Component */}
+
+function Modal(){ // 태그이름짓기 대answkfh tlwkr
+  return(
+    <div className='modal'>
+              <h2>제목</h2>
+              <p>날짜</p>
+              <p>상세내용</p>
+     </div> // 원하는 html
+  )
+}
+
 
 export default App;
