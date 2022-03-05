@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React, {useState} from 'react'; // 리액트의 내장 함수를 사용
 import logo from './logo.svg';
 import './App.css'; 
@@ -12,6 +14,11 @@ function App(){
   // useState안에는 배열이나 오브젝트가 들어가도 된다. useState(['코트 추천','우동 추천']) { 글 제목[1] }
   // state를 사용하는 이유는 웹이 app처럼 동작하게 만들고 싶어서 사용한다 
   // state는 변경되면 랜더링이 자동으로 된다. 새로고침이 필요없다. 즉 자주바뀌는 데이터는 state사용
+  
+  let [별, 별변경] = useState(0);
+  // state 변경 할 수 있는 방법
+  // 별변경 함수를 사용
+  
   let posts = '강남 고기 맛집';
   
   return (
@@ -21,7 +28,9 @@ function App(){
         <div>개발 blog</div> 
       </div>
       <div className="list">
-        <h3>{ 글제목[0] }</h3>
+        <h3>{ 글제목[0]}
+        {/* 클릭이벤트 */}
+          <span onClick={ ()=>{ 별변경(별 + 1)} }>⭐️</span> {별} </h3>
         <p>3월 5일 발행</p>
         <hr/>
       </div>
