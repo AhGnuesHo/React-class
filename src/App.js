@@ -18,6 +18,9 @@ function App(){
   let [별, 별변경] = useState(0);
   // state 변경 할 수 있는 방법
   // 별변경 함수를 사용
+
+  // 모달 창이 보이는지 안보이는지 상태 저장
+  let [모달, 모달변경] = useState(false);
   
   let posts = '강남 고기 맛집';
   
@@ -52,7 +55,7 @@ function App(){
         <hr/>
       </div>
       <div className="list">
-        <h3>{ 글제목[2] }</h3>
+        <h3 onClick={()=>모달변경(true)}>{ 글제목[2] }</h3>
         <p>3월 3일 발행</p>
         <hr/>
       </div>
@@ -62,23 +65,31 @@ function App(){
               <p>상세내용</p>
             </div> */}
 
-      <Modal/>
+      {/* if 대신 삼항 연산자 */}
+      {
+         모달 === true ? <Modal/> : null 
+      }
+      <dutton onClick = {() => {모달 === true ? 모달변경(false) : 모달변경(true)}}> 버튼 </dutton>
 
     </div>
   )
 }
 
-{/* html을 한 단어로 줄여서 쓸수 있는 방법 : Component */}
-
-function Modal(){ // 태그이름짓기 대answkfh tlwkr
+// html을 한 단어로 줄여서 쓸수 있는 방법 : Component 
+// 컴포넌트 만드는 경우 :
+// 반복적으로 나오는 html
+// 사이트에서 자주 바뀌는 Ui
+// 다른 페이지를 만들 때
+// 컴포넌트를 많이 만들때의 단점 :
+// state를 쓸때 복잡해짐
+function Modal(){ // 태그이름짓기 대문자로 시작
   return(
     <div className='modal'>
-              <h2>제목</h2>
-              <p>날짜</p>
-              <p>상세내용</p>
-     </div> // 원하는 html
+      <h2>제목</h2>
+      <p>날짜</p>
+      <p>상세내용</p>
+    </div> // 원하는 html
   )
 }
-
 
 export default App;
