@@ -14,7 +14,7 @@ function App(){
   // useState안에는 배열이나 오브젝트가 들어가도 된다. useState(['코트 추천','우동 추천']) { 글 제목[1] }
   // state를 사용하는 이유는 웹이 app처럼 동작하게 만들고 싶어서 사용한다 
   // state는 변경되면 랜더링이 자동으로 된다. 새로고침이 필요없다. 즉 자주바뀌는 데이터는 state사용
-  
+  // let [별, 별변경] = useState([0,0,0]);
   let [별, 별변경] = useState(0);
   // state 변경 할 수 있는 방법
   // 별변경 함수를 사용
@@ -22,6 +22,14 @@ function App(){
   // 모달 창이 보이는지 안보이는지 상태 저장
   let [모달, 모달변경] = useState(false);
   
+  // 어레이의 모든 데이터에 2를 곱하고 싶은경우
+  var 어레이 = [2,3,4];
+  // map으로 하나씩 꺼내기
+  var new어레이 = 어레이.map(function(a){
+    return a * 2;
+  })
+  
+
   let posts = '강남 고기 맛집';
   
   function 제목바꾸기() {
@@ -59,6 +67,23 @@ function App(){
         <p>3월 3일 발행</p>
         <hr/>
       </div>
+
+      {/* 반복문을 for대신 map */}
+      {
+        글제목.map((a)=>{
+           return  (
+           <div className="list">
+            <h3 onClick = {() => {모달 === true ? 모달변경(false) : 모달변경(true)}}>
+              {a}<span onClick={ ()=>{ 별변경(별 + 1)} }>⭐️</span> {별} 
+            </h3>
+            <p>3월 4일 발행</p>
+            <hr/>
+           </div>
+         )
+        })
+      }
+
+
       {/*  <div className='modal'>
               <h2>제목</h2>
               <p>날짜</p>
