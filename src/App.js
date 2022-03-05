@@ -20,15 +20,17 @@ function App(){
   // 별변경 함수를 사용
 
   // 모달 창이 보이는지 안보이는지 상태 저장
-  let [모달, 모달변경] = useState(false);
-  
+  let [모달, 모달변경] = useState(true);
+
+  // 제목에 맞는 모달창이 뜨게
+  let [누른제목, 누른제목변경] = useState(0);
+
   // 어레이의 모든 데이터에 2를 곱하고 싶은경우
   var 어레이 = [2,3,4];
   // map으로 하나씩 꺼내기
   var new어레이 = 어레이.map(function(a){
     return a * 2;
   })
-  
 
   let posts = '강남 고기 맛집';
   
@@ -68,13 +70,16 @@ function App(){
         <hr/>
       </div>
 
+      <button onClick={() => {모달변경(!모달)}}>모달 열고 닫기</button>
+
       {/* 반복문을 for대신 map */}
       {
-        글제목.map((a)=>{
+        글제목.map((a, i)=>{
            return  (
            <div className="list">
-            <h3 onClick = {() => {모달 === true ? 모달변경(false) : 모달변경(true)}}>
-              {a}<span onClick={ ()=>{ 별변경(별 + 1)} }>⭐️</span> {별} 
+            <h3 onClick = {()=>{누른제목변경(i), 모달변경(ture)}}>
+              {a}
+              <span onClick={ ()=>{ 별변경(별 + 1)} }>⭐️</span> {별} 
             </h3>
             <p>3월 4일 발행</p>
             <hr/>
@@ -83,19 +88,16 @@ function App(){
         })
       }
 
-
-      {/*  <div className='modal'>
-              <h2>제목</h2>
-              <p>날짜</p>
-              <p>상세내용</p>
-            </div> */}
-
       {/* if 대신 삼항 연산자 */}
       {
-         모달 === true ? <Modal/> : null 
+        // 자식 컴포넌트에게 글 제목 전달하기
+        // props
+        // state변수명 = {전송할 state}
+         모달 === true
+         ?<Modal 글제목 = {글제목} 누른제목 = {누른제목}></Modal>
+         : null 
       }
-      <dutton onClick = {() => {모달 === true ? 모달변경(false) : 모달변경(true)}}> 버튼 </dutton>
-
+      
     </div>
   )
 }
@@ -107,10 +109,10 @@ function App(){
 // 다른 페이지를 만들 때
 // 컴포넌트를 많이 만들때의 단점 :
 // state를 쓸때 복잡해짐
-function Modal(){ // 태그이름짓기 대문자로 시작
+function Modal(props){ // 태그이름짓기 대문자로 시작
   return(
     <div className='modal'>
-      <h2>제목</h2>
+      <h2>{ props.글제목[props.누른제목] } </h2>
       <p>날짜</p>
       <p>상세내용</p>
     </div> // 원하는 html
