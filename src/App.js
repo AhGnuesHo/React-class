@@ -77,6 +77,18 @@ function App(){
       {/* 사용자가 입력한 값 e.target.value */}
       <input onChange={(e)=>{입력값변경(e.target.value)}}/>
 
+      <div className="publish">
+        <input onChange={(e)=>{입력값변경(e.target.value)}}/>
+        <button onClick={()=>{
+          //글제목 복제
+          var arrayCopy = [...글제목];
+          // 어레이에 맨 앞에 값 추가
+          arrayCopy.unshift(입력값);
+          글제목변경(arrayCopy)
+          }}>저장</button>
+      </div>
+      
+
 
       <button onClick={() => {모달변경(!모달)}}>모달 열고 닫기</button>
 
